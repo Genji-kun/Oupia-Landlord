@@ -15,3 +15,10 @@ export type TSignInForm = {
     username: string,
     password: string
 }
+
+export type TAssetParam = {
+    userId: number,
+    keyword: string,
+    page: number | undefined,
+    size: number | undefined
+}

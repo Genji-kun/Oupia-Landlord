@@ -2,8 +2,9 @@ import AuthLayout from "@/components/layouts/AuthLayout";
 import DashboardLayout from "@/components/layouts/Dashboard";
 import DashboardPage from "@/pages";
 import AssetsPage from "@/pages/assets";
+import CreateAssetPage from "@/pages/assets/create";
 import SignInPage from "@/pages/sign-in";
-import { createBrowserRouter } from "react-router-dom";
+import { Outlet, createBrowserRouter } from "react-router-dom";
 
 export const SystemRouter = createBrowserRouter([
     {
@@ -23,8 +24,22 @@ export const SystemRouter = createBrowserRouter([
         path: "/assets",
         element: (
             <DashboardLayout>
-                <AssetsPage />
+                <Outlet />
             </DashboardLayout>
-        )
+        ),
+        children: [
+            {
+                path: "/assets",
+                element: (
+                    <AssetsPage />
+                )
+            },
+            {
+                path: "/assets/create",
+                element: (
+                    <CreateAssetPage />
+                )
+            }
+        ]
     }
 ])

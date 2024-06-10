@@ -1,7 +1,7 @@
 "use client"
 
 import { cn } from '@/lib/utils';
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext } from 'react';
 
 import { ChevronFirst, ChevronLast } from 'lucide-react';
 import Logo from '../Logo';
@@ -15,7 +15,7 @@ const Sidebar = ({ children }: { children: React.ReactNode }) => {
     const { expanded, toggle } = useExpandedStore();
 
     return (
-        <aside className="dark:bg-oupia-base hidden lg:block border-r border-border h-screen fixed left-0 inset-y-0 z-10 bg-background">
+        <aside className="dark:bg-oupia-base hidden lg:block border-r border-border h-screen fixed left-0 inset-y-0 z-[1000] bg-background">
             <div className="p-3 flex items-center justify-center ">
                 <div className={cn("overflow-hidden transition-all px-3 w-56", !expanded && "w-0 px-0")}>
                     <Logo />
@@ -40,15 +40,13 @@ const SidebarItem = ({ icon, label, href }: { icon: React.ReactNode, label: stri
     const location = useLocation();
     const pathname = location.pathname;
     const isActive = (pathname === "/" && href === "/") || pathname === href || (pathname !== "/" && pathname?.startsWith(`${href}/`));
-
     const expanded = useContext(SidebarContext);
-
 
     return (
         <li className="relative group">
             <Link to={href} className={cn(" text-muted-foreground flex items-center p-2 rounded hover:bg-border relative after:content-[''] after:absolute after:w-[3px] after:bg-primary-500 after:-right-3 after:top-0 after:h-0 hover:after:h-full after:transition-all", isActive && "text-primary-500 bg-primary-600/20 hover:bg-primary-600/20 dark:bg-primary-900/40 dark:hover:bg-primary-900/40 after:h-full")}>
                 {icon}
-                <span className={cn("font-semibold overflow-hidden transition-all text-nowrap", expanded ? "w-52 ml-3" : "w-0")}>{label}</span>
+                <span className={cn("font-semibold overflow-hidden transition-all text-nowrap text-sm", expanded ? "w-52 ml-3" : "w-0")}>{label}</span>
             </Link>
             <>
                 {!expanded &&

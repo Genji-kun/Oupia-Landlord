@@ -15,7 +15,7 @@ export const useCurrentUserStore = create<TCurrentUserStore>((set) => ({
         set(() => ({ currentUser: user }));
     },
     signOut: () => {
-        console.log("hehe")
+        set(() => ({ currentUser: null }));
     }
 }));
 
