@@ -1,4 +1,4 @@
-import SignInForm from '@/components/pages/SignIn/SignInForm';
+import SignInForm from '@/components/pages/sign-in/SignInForm';
 import React from 'react'
 
 const SignInPage: React.FC = () => {

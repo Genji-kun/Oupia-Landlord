@@ -1,9 +1,9 @@
 import Spinner from '@/components/common/Spinner';
-import AssetTable from '@/components/pages/AssetManagement/AssetList';
+import AssetTable from '@/components/pages/assets/AssetList';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useSearchAssets } from '@/hooks/query';
-import { Loader2, Search } from 'lucide-react';
+import { Search } from 'lucide-react';
 import React from 'react'
 import { Link } from 'react-router-dom';
 

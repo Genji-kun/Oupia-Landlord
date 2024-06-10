@@ -17,6 +17,10 @@ const AuthProvider: FC<IAuthProviderProps> = ({ children }) => {
         }
     }, [currentUser, navigate])
 
+    if (!currentUser) {
+        return <></>
+    }
+
     return children;
 };
 

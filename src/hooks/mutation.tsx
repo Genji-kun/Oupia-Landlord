@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom"
 import { toast } from "sonner"
 
 export const useSignIn = () => {
+
     const signIn = useCurrentUserStore((state) => state.signIn);
     const navigate = useNavigate();
     const { mutateAsync, isPending } = useMutation({
@@ -19,7 +20,7 @@ export const useSignIn = () => {
             if (currentUserInfo.role === UserRole.LANDLORD) {
                 Cookies.set("user", JSON.stringify(currentUserInfo));
             }
-            signIn(data);
+            signIn(currentUserInfo);
             navigate("/", { replace: true })
         }
     })

@@ -1,4 +1,5 @@
 import Header from '@/components/common/Header';
+import AuthProvider from '@/components/common/Providers/AuthProvider';
 import { Sidebar, SidebarItem } from '@/components/common/SideBar';
 import { cn } from '@/lib/utils';
 import { useExpandedStore } from '@/stores/expandedStore';
@@ -12,7 +13,7 @@ const DashboardLayout: FC<IDashboardLayoutProps> = ({ children }) => {
     const expanded = useExpandedStore((state) => state.expanded);
 
     return (
-        <>
+        <AuthProvider>
             <section className="flex flex-col h-full">
                 <Header />
                 <div className='flex flex-auto'>
@@ -25,7 +26,7 @@ const DashboardLayout: FC<IDashboardLayoutProps> = ({ children }) => {
                     </main>
                 </div>
             </section>
-        </>
+        </AuthProvider>
     );
 };
 

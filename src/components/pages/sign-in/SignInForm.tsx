@@ -8,7 +8,6 @@ import { useSignIn } from "@/hooks/mutation";
 import { CircleUser, KeyRoundIcon, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
-import { Navigate } from "react-router-dom";
 
 const SignInForm = () => {
 
@@ -26,13 +25,19 @@ const SignInForm = () => {
         try {
             await mutateAsync(form);
         } catch (error: any) {
-            if (error.response.status === 400)
-                toast.error("Tên đăng nhập hoặc mật khấu không đúng, vui lòng thử lại.")
-            else if (error.response.status === 500) {
-                toast.error("Đã có lỗi xảy ra, vui lòng thử lại sau.")
+            if (error.response) {
+                if (error.response.status === 400)
+                    toast.error("Tên đăng nhập hoặc mật khấu không đúng, vui lòng thử lại.")
+                else
+                    toast.error("Đã có lỗi xảy ra, vui lòng thử lại sau.")
+            }
+            else {
+                toast.error("Không kết nối được với máy chủ, vui lòng thử lại.")
             }
         }
+
     }
+
 
     return (
         <Form {...loginForm}>

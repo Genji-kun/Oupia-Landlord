@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@goongmaps/goong-map-react": "^1.1.2",
     "@hookform/resolvers": "^3.6.0",
     "@radix-ui/react-avatar": "^1.0.4",
     "@radix-ui/react-label": "^2.0.2",

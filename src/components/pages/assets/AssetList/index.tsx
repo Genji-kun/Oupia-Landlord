@@ -9,11 +9,11 @@ import {
 } from "@/components/ui/table"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Eye, MoreHorizontalIcon } from "lucide-react";
-import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { format } from "date-fns";
 import { Badge } from "@/components/ui/badge";
 import { formatCurrency } from "@/lib/utils";
+import { Link } from "react-router-dom";
 
 
 
@@ -99,13 +99,11 @@ const AssetTable = ({ data }: { data: IAsset[] }) => {
                                             <MoreHorizontalIcon className="w-4 h-4" />
                                         </Button>
                                     </PopoverTrigger>
-                                    <PopoverContent side='left' align='start' className="w-72 flex flex-col p-0">
-                                        <h3 className="font-semibold text-lg px-4 py-3">Thao tác</h3>
-                                        <Separator />
-                                        <div className="flex items-center gap-2 py-2 px-4 hover:bg-border dark:hover:bg-oupia-sub cursor-pointer mt-2">
+                                    <PopoverContent side='top' align='end' className="w-48 flex flex-col p-0">
+                                        <Link to={`/assets/detail/${asset.assetSlug}`} className="flex items-center gap-2 py-2 px-4 hover:bg-border dark:hover:bg-oupia-sub cursor-pointer">
                                             <Eye className="w-4 h-4" />
-                                            <span className='text-sm'>Xem thông tin chi tiểt</span>
-                                        </div>
+                                            <span className='text-xs'>Xem thông tin chi tiểt</span>
+                                        </Link>
                                     </PopoverContent>
                                 </Popover>
                             </TableCell>
