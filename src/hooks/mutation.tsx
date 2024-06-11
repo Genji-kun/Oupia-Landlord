@@ -1,7 +1,8 @@
 import { UserRole } from "@/lib/enums"
-import { TSignInForm } from "@/lib/types"
+import { TCreateCertificationForm, TSignInForm } from "@/lib/types"
 import { assetService } from "@/services/AssetService"
 import { authService } from "@/services/AuthService"
+import { certificationService } from "@/services/CertificationService"
 import { useCurrentUserStore } from "@/stores/currrentUserStore"
 import { useMutation } from "@tanstack/react-query"
 import Cookies from "js-cookie"
@@ -38,6 +39,22 @@ export const useCreateAsset = () => {
         },
         onSuccess: () => {
             toast.success("Thêm thông tin nhà trọ thành công.")
+        }
+    })
+
+    return {
+        mutateAsync,
+        isPending
+    }
+}
+
+export const useCreateCertification = () => {
+    const { mutateAsync, isPending } = useMutation({
+        mutationFn: async (form: TCreateCertificationForm) => {
+            await certificationService.createCertification(form);
+        },
+        onSuccess: () => {
+            toast.success("Thêm chứng chỉ thành công.")
         }
     })
 

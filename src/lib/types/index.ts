@@ -26,7 +26,17 @@ export type TCreateAssetForm = {
     assetName: string,
     assetDescription: string,
     assetType: AssetType,
+    price: number,
+    area: number,
+    fullLocation: string,
+    maxPeople: string,
 
+
+}
+export type TCreateCertificationForm = {
+    assetId: number,
+    userId: number,
+    startDate: Date
 }
 
 // Param
@@ -37,3 +47,11 @@ export type TAssetParam = {
     page: number | undefined,
     size: number | undefined
 }
+
+
+export type TUserParam = {
+    keyword: string,
+    page: number | undefined,
+    size: number | undefined
+}
+

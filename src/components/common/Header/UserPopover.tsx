@@ -55,7 +55,6 @@ const UserPopover: React.FC = () => {
                             checked={theme === "dark"}
                             onClick={(e) => {
                                 e.stopPropagation(); changeTheme();
-
                             }}
                         />
                     </div>

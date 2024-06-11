@@ -7,3 +7,7 @@ export interface ICurrentUser {
     username: string;
     role: UserRole;
 }
+
+export interface IUser extends ICurrentUser {
+
+}

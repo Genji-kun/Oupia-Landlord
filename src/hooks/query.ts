@@ -1,5 +1,6 @@
 import { QUERY_KEY } from "@/lib/constants/QueryKeys";
 import { assetService } from "@/services/AssetService";
+import { userService } from "@/services/UserService";
 import { useCurrentUserStore } from "@/stores/currrentUserStore";
 import { useQuery } from "@tanstack/react-query"
 
@@ -15,7 +16,6 @@ export const useSearchAssets = (keyword: string, size?: number, page?: number) =
                 size: 4,
                 page: page
             });
-            console.table(res.data.content);
             return res.data.content;
         },
         refetchOnWindowFocus: false
@@ -24,5 +24,27 @@ export const useSearchAssets = (keyword: string, size?: number, page?: number) =
     return {
         assets: data,
         isFetchingAssets: isFetching
+    }
+}
+
+export const useSearchUsers = (keyword: string) => {
+    const { data, isFetching } = useQuery({
+        queryKey: [QUERY_KEY.SEARCH_USERS, keyword],
+        queryFn: async ({ queryKey }) => {
+            const [_key, keyword] = queryKey;
+            const res = await userService.searchUsers({
+                keyword: keyword,
+                page: undefined,
+                size: 8
+            });
+            return res.data.content;
+        },
+        refetchOnWindowFocus: false
+
+    });
+
+    return {
+        users: data,
+        isFetchingUsers: isFetching
     }
 }
