@@ -39,6 +39,12 @@ const UserInput = ({ form, disabled }: { form: UseFormReturn<TCreateCertificatio
         }
     }, [debounceQuery, users])
 
+    useEffect(() => {
+        if (!form.getValues("userId")) {
+            setSelectedUser(undefined)
+        }
+    }, [form.getValues("userId")])
+
     const handleClickOutSide = (evt: MouseEvent) => {
         if (inputRef.current && !inputRef.current.contains(evt.target as Node)) {
             setQuery("");

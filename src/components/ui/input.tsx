@@ -28,7 +28,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             icon && 'pl-10',
             icon && line && 'pl-8',
             !line
-              ? 'focus-visible:outline-primary'
+              ? 'focus-visible:outline-primary-500'
               : 'focus-visible:outline-none'
           )}
           ref={ref}

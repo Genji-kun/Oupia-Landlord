@@ -49,17 +49,15 @@ export const useCreateAsset = () => {
 }
 
 export const useCreateCertification = () => {
-    const { mutateAsync, isPending } = useMutation({
+    const { mutateAsync, isPending, isSuccess } = useMutation({
         mutationFn: async (form: TCreateCertificationForm) => {
             await certificationService.createCertification(form);
-        },
-        onSuccess: () => {
-            toast.success("Thêm chứng chỉ thành công.")
         }
     })
 
     return {
         mutateAsync,
-        isPending
+        isPending,
+        isSuccess
     }
 }

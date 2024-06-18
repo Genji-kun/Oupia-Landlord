@@ -26,13 +26,16 @@ export type TCreateAssetForm = {
     assetName: string,
     assetDescription: string,
     assetType: AssetType,
-    price: number,
-    area: number,
+    price: string,
+    area: string,
     fullLocation: string,
     maxPeople: string,
-
-
+    locationLong: number,
+    locationLat: number,
+    amenities: string[],
+    images: File[]
 }
+
 export type TCreateCertificationForm = {
     assetId: number,
     userId: number,
@@ -44,6 +47,15 @@ export type TCreateCertificationForm = {
 export type TAssetParam = {
     userId: number,
     keyword: string,
+    page: number | undefined,
+    size: number | undefined
+}
+
+export type TCertificationParam = {
+    assetId: number | undefined,
+    userId: number | undefined,
+    keywordByAsset: string,
+    keywordByUser: string,
     page: number | undefined,
     size: number | undefined
 }

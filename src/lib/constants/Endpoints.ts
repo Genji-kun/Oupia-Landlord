@@ -13,5 +13,6 @@ export const USER_ENDPOINTS = {
 }
 
 export const CERTIFICATION_ENDPOINTS = {
+    SEARCH: `store/landlord/ceritications/`,
     CREATE: `store/landlord/ceritications/`
 }
