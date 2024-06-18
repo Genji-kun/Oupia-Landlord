@@ -14,6 +14,10 @@ class AssetService extends BaseService {
     createAsset = (form: FormData) => {
         return this.post(ASSET_ENDPOINTS.CREATE, form);
     }
+
+    getAssetDetail = (slug: string) => {
+        return this.get(ASSET_ENDPOINTS.GET_ASSET_DETAIL(slug));
+    }
 }
 
 export const assetService = new AssetService();

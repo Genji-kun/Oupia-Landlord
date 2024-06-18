@@ -1,11 +1,11 @@
-import { useParams } from 'react-router-dom'
+import { useAssetDetail } from '@/hooks/query';
 
 const AssetDetailPage = () => {
 
-    const params = useParams();
-
+    const {asset, assetFetching} = useAssetDetail();
+    if (assetFetching) return <></>
     return (
-        <div>{params.slug}</div>
+        <div>{asset.name}</div>
     )
 }
 

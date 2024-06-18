@@ -1,3 +1,4 @@
+import FilterInput from '@/components/common/FilterInput';
 import Spinner from '@/components/common/Spinner';
 import AssetTable from '@/components/pages/assets/AssetList';
 import { Button } from '@/components/ui/button';
@@ -9,7 +10,7 @@ import { Link } from 'react-router-dom';
 
 const AssetsPage: React.FC = () => {
 
-    const { assets, isFetchingAssets } = useSearchAssets("");
+    const { assets, isFetchingAssets } = useSearchAssets();
 
     return (
         <div className="flex flex-col gap-4">
@@ -18,7 +19,8 @@ const AssetsPage: React.FC = () => {
                 <div className="flex items-center gap-2">
                     <div className="relative xl:w-96">
                         <Search className="w-4 h-4 absolute z-10 left-2 top-1/2 -translate-y-1/2 text-muted-foreground" />
-                        <Input
+                        <FilterInput
+                            keyParam='s'
                             className="h-fit w-full placeholder:text-muted-foreground pl-8"
                             placeholder='Nhập từ khóa...'
                         />

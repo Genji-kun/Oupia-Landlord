@@ -5,9 +5,12 @@ import { userService } from "@/services/UserService";
 import { useCurrentUserStore } from "@/stores/currrentUserStore";
 import { useQuery } from "@tanstack/react-query"
 import axios from "axios";
+import { useFilter } from "./useFilter";
+import { useParams } from "react-router-dom";
 
-export const useSearchAssets = (keyword: string, size?: number, page?: number) => {
+export const useSearchAssets = (size?: number, page?: number) => {
     const currentUser = useCurrentUserStore((state) => state.currentUser);
+    const { keyword } = useFilter();
     const { data, isFetching } = useQuery({
         queryKey: [QUERY_KEY.GET_ASSETS, { keyword, size, page }],
         queryFn: async ({ queryKey }: any) => {
@@ -15,8 +18,8 @@ export const useSearchAssets = (keyword: string, size?: number, page?: number) =
             const res = await assetService.getAssets({
                 keyword: keyword,
                 userId: currentUser!.id,
-                size: 4,
-                page: page
+                size: size || 5,
+                page: page || 1
             });
             return res.data.content;
         },
@@ -83,5 +86,24 @@ export const useSearhLocation = (searchQuery: string) => {
     return {
         location: data,
         isFetchingLocation: isFetching
+    }
+}
+
+export const useAssetDetail = () => {
+    const { slug } = useParams<{ slug: string }>();
+    const { data, isFetching } = useQuery({
+        queryKey: [QUERY_KEY.GET_ASSET_DETAIL, slug],
+        queryFn: async ({ queryKey }) => {
+            const [_key, slug] = queryKey;
+            const res = await assetService.getAssetDetail(slug || '');
+            return res.data;
+        },
+        refetchOnWindowFocus: false,
+        enabled: !!slug
+    })
+
+    return {
+        asset: data,
+        assetFetching: isFetching
     }
 }
