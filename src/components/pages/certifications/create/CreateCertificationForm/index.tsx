@@ -14,10 +14,11 @@ import { Label } from '@/components/ui/label'
 import AssetInput from './AssetInput'
 import { useCreateCertification } from '@/hooks/mutation'
 import { toast } from 'sonner'
+import { useEffect } from 'react'
 
 const CreateCertificationForm = () => {
 
-    const { isPending, mutateAsync } = useCreateCertification();
+    const { isPending, mutateAsync, isSuccess } = useCreateCertification();
 
     const createCertiForm = useForm<TCreateCertificationForm>({
         resolver: zodResolver(createCertificationSchema),
@@ -31,11 +32,20 @@ const CreateCertificationForm = () => {
     async function onSubmit(values: TCreateCertificationForm) {
         try {
             await mutateAsync(values);
+
         } catch (error) {
             toast.error("Đã có lỗi xảy ra, vui lòng thử lại.");
             console.error(error)
         }
     }
+
+    useEffect(() => {
+        if (isSuccess) {
+            toast.success("Thêm chứng chỉ thành công.")
+            createCertiForm.reset();
+        }
+    }, [isSuccess])
+
 
     return (
         <Form {...createCertiForm}>

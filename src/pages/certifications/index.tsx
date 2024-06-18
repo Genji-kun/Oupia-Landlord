@@ -1,12 +1,15 @@
+import Spinner from '@/components/common/Spinner';
+import CertificationTable from '@/components/pages/certifications/CertificationTable';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { useSearchCertifications } from '@/hooks/query';
 import { Search } from 'lucide-react';
 import React from 'react'
 import { Link } from 'react-router-dom';
 
 const CertificationsPage: React.FC = () => {
 
-
+    const { certifications, isFetchingCertifications } = useSearchCertifications();
 
     return (
         <div className="flex flex-col gap-4">
@@ -26,9 +29,9 @@ const CertificationsPage: React.FC = () => {
                 </div>
 
             </div>
-            {/* {
-                isFetchingAssets ? <Spinner marginY={"10rem"} /> : <AssetTable data={assets} />
-            } */}
+            {
+                isFetchingCertifications ? <Spinner marginY={"10rem"} /> : <CertificationTable data={certifications} />
+            }
         </div>
     )
 }

@@ -12,3 +12,9 @@ export enum AssetType {
     STUDIO_APARTMENT = "STUDIO_APARTMENT",
     ENTIRE_HOUSE = "ENTIRE_HOUSE"
 }
+
+export enum Status {
+    PENDING = "PENDING",
+    ACCEPTED = "ACCEPTED",
+    DENIED = "DENIED",
+}
