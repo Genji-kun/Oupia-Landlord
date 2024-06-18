@@ -60,6 +60,7 @@
 body {
   height: 100vh;
   font-family: "Saira";
+  color: #334455;
   @apply bg-gray-100;
 }
 
