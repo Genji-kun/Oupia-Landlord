@@ -5,7 +5,8 @@ export const AUTH_ENDPOINTS = {
 
 export const ASSET_ENDPOINTS = {
     CREATE: `store/landlord/assets/`,
-    GET_ASSETS: `search/assets/`
+    GET_ASSETS: `search/assets/`,
+    GET_ASSET_DETAIL: (slug: string) => `search/assets/${slug}`
 }
 
 export const USER_ENDPOINTS = {

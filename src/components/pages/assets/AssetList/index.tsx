@@ -17,16 +17,16 @@ import { Link } from "react-router-dom";
 
 const AssetTable = ({ data }: { data: IAsset[] }) => {
     return (
-        <Table className="bg-background shadow-lg dark:shadow-none">
+        <Table className="bg-background text-gray-700 shadow-lg dark:shadow-none">
             <TableHeader className="dark:bg-oupia-sub uppercase">
                 <TableRow>
-                    <TableHead className="xl:w-96 font-semibold w-80">Thông tin căn hộ</TableHead>
-                    <TableHead className="font-semibold w-96">Giới thiệu</TableHead>
-                    <TableHead className="font-semibold text-center">Giá thuê</TableHead>
-                    <TableHead className="font-semibold text-center">Diện tích</TableHead>
-                    <TableHead className="font-semibold text-center">Phân loại</TableHead>
-                    <TableHead className="font-semibold">Ngày đăng</TableHead>
-                    <TableHead className="w-20"></TableHead>
+                    <TableHead className="xl:w-96 font-semibold w-80 text-foreground">Thông tin căn hộ</TableHead>
+                    <TableHead className="font-semibold w-96 text-foreground">Giới thiệu</TableHead>
+                    <TableHead className="font-semibold text-center text-foreground">Giá thuê</TableHead>
+                    <TableHead className="font-semibold text-center text-foreground">Diện tích</TableHead>
+                    <TableHead className="font-semibold text-center text-foreground">Phân loại</TableHead>
+                    <TableHead className="font-semibold text-foreground">Ngày đăng</TableHead>
+                    <TableHead className="w-20 text-foreground"></TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
@@ -39,7 +39,9 @@ const AssetTable = ({ data }: { data: IAsset[] }) => {
                                         alt="Asset Image"
                                         src={asset.images[0]}
                                         className="w-16 aspect-square object-cover rounded-lg" />
-                                    <span className="font-semibold">{asset.assetName}</span>
+                                    <Link to={`/assets/detail/${asset.assetSlug}`}>
+                                        <span className="font-semibold">{asset.assetName}</span>
+                                    </Link>
                                 </div>
                             </TableCell>
                             <TableCell>
@@ -58,7 +60,7 @@ const AssetTable = ({ data }: { data: IAsset[] }) => {
                                 </div>
                             </TableCell>
                             <TableCell className="h-full">
-                                <div className="flex items-center justify-center h-full">
+                                <div className="text-nowrap flex items-center justify-center h-full">
                                     {(() => {
                                         let assetType = "";
                                         switch (asset.assetType) {
