@@ -24,11 +24,8 @@ const CustomBreadCrumb = () => {
             case "create":
                 label = "Thêm mới";
                 break;
-            case "CREATE":
-                label = "CREATE NEW";
-                break;
             default:
-                label = segment.toUpperCase();
+                label = segment;
         }
 
         if (index === array.length - 1) {
@@ -42,29 +39,37 @@ const CustomBreadCrumb = () => {
     return (
         <Breadcrumb className={cn("transition-all", expanded ? "ml-[17rem]" : "ml-12")}>
             <BreadcrumbList>
-                {items.map((item, index) => (
-                    <React.Fragment key={index}>
-                        <BreadcrumbItem>
-                            {item && item.href ? (
-                                <BreadcrumbLink
-                                    asChild
-                                    className="hover:font-bold uppercase"
-                                >
-                                    <Link to={item.href}>{item.label}</Link>
-                                </BreadcrumbLink>
-                            ) : item ? (
-                                <BreadcrumbPage className="font-semibold uppercase">
-                                    {item.label}
-                                </BreadcrumbPage>
-                            ) : null}
-                        </BreadcrumbItem>
-                        {index < items.length - 1 && (
-                            <BreadcrumbSeparator>
-                                <Slash />
-                            </BreadcrumbSeparator>
-                        )}
-                    </React.Fragment>
-                ))}
+                {pathname === "/" ?
+                    <BreadcrumbPage className="font-semibold uppercase">
+                        Bảng điều khiển
+                    </BreadcrumbPage>
+                    : <>
+                        {items.map((item, index) => (
+                            <React.Fragment key={index}>
+                                <BreadcrumbItem>
+                                    {item && item.href ? (
+                                        <BreadcrumbLink
+                                            asChild
+                                            className="hover:font-bold uppercase"
+                                        >
+                                            <Link to={item.href}>{item.label}</Link>
+                                        </BreadcrumbLink>
+                                    ) : item ? (
+                                        <BreadcrumbPage className="font-semibold uppercase">
+                                            {item.label}
+                                        </BreadcrumbPage>
+                                    ) : null}
+                                </BreadcrumbItem>
+                                {index < items.length - 1 && (
+                                    <BreadcrumbSeparator>
+                                        <Slash />
+                                    </BreadcrumbSeparator>
+                                )}
+                            </React.Fragment>
+                        ))}
+                    </>
+                }
+
             </BreadcrumbList>
         </Breadcrumb>
     );

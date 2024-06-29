@@ -22,7 +22,7 @@ const AssetInput = ({ form, disabled }: { form: UseFormReturn<TCreateCertificati
     const inputRef = useRef<HTMLDivElement>(null);
     const debounceQuery = useDebounce(query, 500);
 
-    const { assets, isFetchingAssets } = useSearchAssets(debounceQuery)
+    const { assets, isFetchingAssets } = useSearchAssets()
 
     useEffect(() => {
         !query && setShowResults(false);

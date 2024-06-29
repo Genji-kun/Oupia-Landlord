@@ -2,7 +2,6 @@ import FilterInput from '@/components/common/FilterInput';
 import Spinner from '@/components/common/Spinner';
 import AssetTable from '@/components/pages/assets/AssetList';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { useSearchAssets } from '@/hooks/query';
 import { Search } from 'lucide-react';
 import React from 'react'
