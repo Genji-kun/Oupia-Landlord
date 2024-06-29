@@ -1,6 +1,6 @@
 import AuthLayout from "@/components/layouts/AuthLayout";
 import DashboardLayout from "@/components/layouts/Dashboard";
-import DashboardPage from "@/pages";
+import DashboardPage from "@/pages/dashboard";
 import AssetsPage from "@/pages/assets";
 import CreateAssetPage from "@/pages/assets/create";
 import AssetDetailPage from "@/pages/assets/detail/[slug]";
