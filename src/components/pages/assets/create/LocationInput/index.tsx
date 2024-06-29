@@ -4,8 +4,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
-import { useSearhLocation } from '@/hooks/query';
-import { useDebounce } from '@/hooks/useDebounce';
+// import { useSearhLocation } from '@/hooks/query';
+// import { useDebounce } from '@/hooks/useDebounce';
 import { TCreateAssetForm } from '@/lib/types';
 import axios from 'axios';
 import { X } from 'lucide-react';
@@ -15,26 +15,26 @@ import { UseFormReturn } from 'react-hook-form';
 function LocationInput({ form }: { form: UseFormReturn<TCreateAssetForm, any, undefined> }) {
 
     const [query, setQuery] = useState("");
-    const [results, setResults] = useState<any[]>([]);
+    const [results,] = useState<any[]>([]);
     const [showResults, setShowResults] = useState<boolean>(false);
     const inputRef = useRef<HTMLDivElement>(null);
 
-    const debounceQuery = useDebounce(query, 500);
-    // const { location, isFetchingLocation } = useSearhLocation(debounceQuery);
+    // const debounceQuery = useDebounce(query, 500);
+    // // const { location, isFetchingLocation } = useSearhLocation(debounceQuery);
 
-    const fetchData = useDebounce(async (searchQuery: string) => {
-        if (searchQuery) {
-            try {
-                const res = await axios.get(`https://rsapi.goong.io/Place/AutoComplete?input=${searchQuery}, Việt Nam&api_key=${import.meta.env.VITE_PUBLIC_GOONG_MAPS_API_KEY}&sessionToken=${localStorage.getItem("sessionToken")}`);
-                const data = await res.data.predictions;
-                if (data) {
-                    setResults(data);
-                }
-            } catch (error) {
-                console.log(error);
-            }
-        }
-    }, 500);
+    // const fetchData = useDebounce(async (searchQuery: string) => {
+    //     if (searchQuery) {
+    //         try {
+    //             const res = await axios.get(`https://rsapi.goong.io/Place/AutoComplete?input=${searchQuery}, Việt Nam&api_key=${import.meta.env.VITE_PUBLIC_GOONG_MAPS_API_KEY}&sessionToken=${localStorage.getItem("sessionToken")}`);
+    //             const data = await res.data.predictions;
+    //             if (data) {
+    //                 setResults(data);
+    //             }
+    //         } catch (error) {
+    //             console.log(error);
+    //         }
+    //     }
+    // }, 500);
 
     const geteocode = async (placeId: string) => {
         const res = await axios.get(`https://rsapi.goong.io/Place/Detail?place_id=${placeId}&api_key=${process.env.NEXT_PUBLIC_GOONG_MAPS_API_KEY}`);
