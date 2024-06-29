@@ -17,3 +17,8 @@ export const CERTIFICATION_ENDPOINTS = {
     SEARCH: `store/landlord/ceritications/`,
     CREATE: `store/landlord/ceritications/`
 }
+
+export const DASHBOARD_ENDPOINTS = {
+    TOTAL: `store/landlord/stat/`,
+    REVIEWS: `store/landlord/stat/reviews/monthly/`
+}

@@ -67,3 +67,10 @@ export type TUserParam = {
     size: number | undefined
 }
 
+export type TMonthlyReviewParam = {
+    start: string;
+    end: string;
+    assetId?: number;
+    userId?: number;
+}
+
