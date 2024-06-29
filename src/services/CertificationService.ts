@@ -1,6 +1,6 @@
 import { CERTIFICATION_ENDPOINTS } from "@/lib/constants/Endpoints";
 import BaseService from "./BaseService";
-import { TCertificationParam, TCreateCertificationForm } from "@/lib/types";
+import { TCreateCertificationForm } from "@/lib/types";
 
 class CertificationService extends BaseService {
     constructor() {
