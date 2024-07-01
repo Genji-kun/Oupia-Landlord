@@ -21,6 +21,9 @@ const CustomBreadCrumb = () => {
             case "assets":
                 label = "Quản lý nhà trọ";
                 break;
+            case "certifications":
+                label = "Quản lý chứng nhận";
+                break;
             case "create":
                 label = "Thêm mới";
                 break;

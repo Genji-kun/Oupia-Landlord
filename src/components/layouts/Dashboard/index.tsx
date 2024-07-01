@@ -20,7 +20,7 @@ const DashboardLayout: FC<IDashboardLayoutProps> = ({ children }) => {
                     <Sidebar>
                         <SidebarItem href='/' icon={<PieChartIcon className=" mx-auto" />} label='Bảng điều khiển' />
                         <SidebarItem href='/assets' icon={<Home className=" mx-auto" />} label='Quản lý nhà trọ' />
-                        <SidebarItem href='/certifications' icon={<ScrollText className=" mx-auto" />} label='Quản lý chứng chỉ' />
+                        <SidebarItem href='/certifications' icon={<ScrollText className=" mx-auto" />} label='Quản lý chứng nhận' />
                     </Sidebar>
                     <main className={cn("flex-auto mt-16 p-4 transition-all", expanded ? "lg:ml-[18rem]" : "lg:ml-16")}>
                         {children}
