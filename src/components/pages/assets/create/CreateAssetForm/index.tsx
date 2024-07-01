@@ -51,7 +51,7 @@ const CreateAssetForm = () => {
             <form onSubmit={(evt) => {
                 evt.preventDefault();
                 createAssetForm.handleSubmit(onSubmit)();
-            }} className="flex flex-col gap-2 lg:w-1/2 mx-auto bg-background px-8 py-5 shadow-md rounded-lg">
+            }} className="flex flex-col gap-2 lg:w-3/4 mx-auto bg-background px-8 py-5 shadow-md rounded-lg">
                 <div className="grid grid-cols-2 gap-4">
                     <FormField
                         control={createAssetForm.control}
