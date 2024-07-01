@@ -82,7 +82,7 @@ const UserInput = ({ form, disabled }: { form: UseFormReturn<TCreateCertificatio
     return (
 
         <div className="relative space-y-2 w-full" ref={inputRef}>
-            <Label>Người nhận chứng chỉ</Label>
+            <Label>Người được gửi chứng nhận</Label>
             {
                 selectedUser ?
                     <div className="flex items-center justify-between w-full px-4 py-2 rounded bg-background shadow-md">
