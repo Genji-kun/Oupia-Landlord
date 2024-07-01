@@ -39,23 +39,26 @@ function DashboardPage() {
                 <Item title='Tổng đánh giá' value={totalStat?.totalReview || 0} />
             </div>
 
-            <div className='flex justify-between mt-10'>
-                <h1 className="text-xl font-bold">Thống kê số lượng đánh giá</h1>
-                <Select value={year.toString()} onValueChange={(value) => setYear(Number(value))}>
-                    <SelectTrigger className="w-[180px]">
-                        <SelectValue placeholder="Select a year" />
-                    </SelectTrigger>
-                    <SelectContent>
-                        <SelectGroup>
-                            <SelectLabel>Years</SelectLabel>
-                            {Array.from({ length: 41 }, (_, i) => 1990 + i).map((year) => (
-                                <SelectItem key={year} value={year.toString()}>
-                                    {year}
-                                </SelectItem>
-                            ))}
-                        </SelectGroup>
-                    </SelectContent>
-                </Select>
+            <div className='flex justify-between items-end mt-10'>
+                <h1 className="text-xl font-semibold text-primary-500">Thống kê số lượng đánh giá</h1>
+                <div className='flex items-center gap-2'>
+                    <h2 className='font-semibold'>Năm</h2>
+                    <Select value={year.toString()} onValueChange={(value) => setYear(Number(value))}>
+                        <SelectTrigger className="w-24">
+                            <SelectValue placeholder="Select a year" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectGroup>
+                                <SelectLabel>Years</SelectLabel>
+                                {Array.from({ length: 41 }, (_, i) => 1990 + i).map((year) => (
+                                    <SelectItem key={year} value={year.toString()}>
+                                        {year}
+                                    </SelectItem>
+                                ))}
+                            </SelectGroup>
+                        </SelectContent>
+                    </Select>
+                </div>
             </div>
 
             {!reviewFetching &&

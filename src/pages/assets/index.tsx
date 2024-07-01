@@ -76,7 +76,6 @@ const AssetsPage: React.FC = () => {
                         </SelectContent>
                     </Select>
                 </div>
-
             </div>
         </div >
     )
