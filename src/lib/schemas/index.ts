@@ -72,6 +72,6 @@ export const createCertificationSchema = z.object({
         required_error: "Chưa chọn thông tin nhà trọ"
     }),
     startDate: z.date({
-        required_error: "Chưa chọn ngày bắt đầu của chứng chỉ"
+        required_error: "Chưa chọn ngày bắt đầu của chứng nhận"
     })
 })
