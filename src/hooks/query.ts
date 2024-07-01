@@ -44,17 +44,32 @@ export const useSearchAssets = (size?: number, page?: number) => {
     }
 }
 
-export const useSearchCertifications = () => {
+export const useSearchCertifications = (size?: number, page?: number) => {
+
+    const [totalPage, setTotalPage] = useState(1);
+    const [totalElements, setTotalElements] = useState(0);
+    const { keyword } = useFilter();
+
     const { data, isFetching } = useQuery({
-        queryKey: [QUERY_KEY.GET_CERTIFICATIONS],
-        queryFn: async () => {
-            const res = await certificationService.getCertifications();
+        queryKey: [QUERY_KEY.GET_CERTIFICATIONS, { keyword, size, page }],
+        queryFn: async ({ queryKey }: any) => {
+            const [_key, { keyword, size, page }] = queryKey
+            const res = await certificationService.getCertifications({
+                keyword: keyword,
+                size: size || 5,
+                page: page || 1
+            });
+
+            setTotalPage(res.data.totalPages);
+            setTotalElements(res.data.totalElements);
             return res.data.content;
         },
         refetchOnWindowFocus: false
     });
 
     return {
+        totalPage,
+        totalElements,
         certifications: data,
         isFetchingCertifications: isFetching
     }
