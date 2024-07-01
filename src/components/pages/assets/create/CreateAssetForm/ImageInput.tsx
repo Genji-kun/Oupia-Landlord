@@ -47,7 +47,7 @@ const ImageInput = ({ form }: { form: UseFormReturn<TCreateAssetForm, any, undef
             name='images'
             render={() => (
                 <FormItem className='space-y-2'>
-                    <FormLabel className="text-foreground font-semibold">Các tiện ích của nhà trọ</FormLabel>
+                    <FormLabel className="text-foreground font-semibold">Hình ảnh nhà trọ</FormLabel>
                     <div
                         onDragOver={(event) => {
                             event.preventDefault();
@@ -82,19 +82,18 @@ const ImageInput = ({ form }: { form: UseFormReturn<TCreateAssetForm, any, undef
                         </FormControl>
                     </div>
                     <div className='space-y-2'>
-                        {form.getValues('images')?.map((file, index) => (
-                            <div key={index} className='flex items-center gap-2'>
-                                <span className='flex-auto truncate text-muted-foreground'>{file.name}</span>
-                                <Button
-                                    type='button'
-                                    variant={'destructive'}
-                                    className='px-2 py-1 w-fit h-fit'
-                                    onClick={() => handleRemoveFile(index)}
-                                >
-                                    <X className='h-3 w-3' />
-                                </Button>
+                        {!!form.getValues("images").length &&
+                            <div className="flex flex-wrap gap-5 items-center pt-4">
+                                {
+                                    form.getValues("images")?.map((image: File, index: number) => (
+                                        <div key={index} className="col-span-1 relative ">
+                                            <X className="text-destructive font-bold w-6 h-6 p-1 bg-background hover:bg-border dark:hover:bg-oupia-sub dark:bg-oupia-base rounded-full absolute -right-2 -top-2 cursor-pointer" onClick={() => handleRemoveFile(index)} />
+                                            <img className="rounded-lg object-cover w-32 aspect-square" src={URL.createObjectURL(image)} alt={image.name} />
+                                        </div>
+                                    ))
+                                }
                             </div>
-                        ))}
+                        }
                     </div>
                     <FormMessage />
                 </FormItem>
