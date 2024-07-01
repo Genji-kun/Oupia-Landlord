@@ -41,7 +41,7 @@ const CreateCertificationForm = () => {
 
     useEffect(() => {
         if (isSuccess) {
-            toast.success("Thêm chứng chỉ thành công.")
+            toast.success("Thêm chứng nhận thành công.")
             createCertiForm.reset();
         }
     }, [isSuccess])
@@ -108,7 +108,7 @@ const CreateCertificationForm = () => {
                 )}
                 />
                 <Button disabled={isPending} className='w-fit h-fit px-5 py-2 mx-auto '>
-                    <span>Thêm chứng chỉ</span>
+                    <span>Thêm chứng nhận</span>
                     {isPending && <Loader2 className='ml-3 w-4 h-4 animate-spin' />}
                 </Button>
             </form>
