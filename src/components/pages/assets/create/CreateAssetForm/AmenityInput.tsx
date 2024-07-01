@@ -72,7 +72,7 @@ function AmenityInput({ form }: { form: UseFormReturn<TCreateAssetForm, any, und
                 }
                 {
                     !!amenities?.length &&
-                    <ScrollArea className="absolute bg-background z-10 bottom-2 max-h-72 w-full rounded border border-t-0 rounded-t-none py-2">
+                    <ScrollArea className="absolute bg-background z-10 bottom-2 h-72 w-full rounded border border-t-0 rounded-t-none py-2">
                         <div className="flex flex-col px-2">
                             {amenities.map((amenity: { amenityName: string }, index: number) => (
                                 <React.Fragment key={index}>

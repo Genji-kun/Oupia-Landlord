@@ -33,9 +33,14 @@ const CreateCertificationForm = () => {
         try {
             await mutateAsync(values);
 
-        } catch (error) {
-            toast.error("Đã có lỗi xảy ra, vui lòng thử lại.");
-            console.error(error)
+        } catch (error: any) {
+            if (error.response.status == 400 && error.response.data.code == 3001) {
+                toast.error("Chứng nhận đã tồn tại.");
+
+            } else {
+                toast.error("Đã có lỗi xảy ra, vui lòng thử lại.");
+                console.error(error)
+            }
         }
     }
 

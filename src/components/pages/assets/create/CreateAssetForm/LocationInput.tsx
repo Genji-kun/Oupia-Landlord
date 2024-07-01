@@ -122,7 +122,7 @@ function LocationInput({ form }: { form: UseFormReturn<TCreateAssetForm, any, un
                                 </div>
                                 {
                                     showResults &&
-                                    <ScrollArea className="absolute z-10 bottom-2 max-h-72 w-full rounded border border-t-0 rounded-t-none py-2 bg-accent dark:bg-oupia-base">
+                                    <ScrollArea className="absolute z-10 bottom-2 h-72 w-full rounded border border-t-0 rounded-t-none py-2 bg-accent dark:bg-oupia-base">
                                         <div className="flex flex-col px-2">
                                             {results.map((result, index) => {
                                                 return (

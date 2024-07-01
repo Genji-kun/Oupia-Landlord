@@ -108,7 +108,7 @@ const AssetInput = ({ form, disabled }: { form: UseFormReturn<TCreateCertificati
                         </div>
                         {
                             showResults &&
-                            <ScrollArea className="absolute z-10 bottom-2 max-h-72 w-full rounded border border-t-0 rounded-t-none py-2">
+                            <ScrollArea className="absolute z-10 bottom-2 h-72 w-full rounded border border-t-0 rounded-t-none py-2">
                                 <div className="flex flex-col px-2">
                                     {assets && assets.map((asset: IAsset) => {
                                         return (
