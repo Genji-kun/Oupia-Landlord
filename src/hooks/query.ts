@@ -7,10 +7,17 @@ import { useQuery } from "@tanstack/react-query"
 import axios from "axios";
 import { useFilter } from "./useFilter";
 import { useParams } from "react-router-dom";
+import { useState } from "react";
+import { searchService } from "@/services/SearchService";
 
 export const useSearchAssets = (size?: number, page?: number) => {
+
+    const [totalPage, setTotalPage] = useState(1);
+    const [totalElements, setTotalElements] = useState(0);
     const currentUser = useCurrentUserStore((state) => state.currentUser);
     const { keyword } = useFilter();
+
+
     const { data, isFetching } = useQuery({
         queryKey: [QUERY_KEY.GET_ASSETS, { keyword, size, page }],
         queryFn: async ({ queryKey }: any) => {
@@ -21,12 +28,17 @@ export const useSearchAssets = (size?: number, page?: number) => {
                 size: size || 5,
                 page: page || 1
             });
+
+            setTotalPage(res.data.totalPages);
+            setTotalElements(res.data.totalElements);
             return res.data.content;
         },
         refetchOnWindowFocus: false
     });
 
     return {
+        totalPage,
+        totalElements,
         assets: data,
         isFetchingAssets: isFetching
     }
@@ -86,6 +98,24 @@ export const useSearhLocation = (searchQuery: string) => {
     return {
         location: data,
         isFetchingLocation: isFetching
+    }
+}
+
+export const useSearchAmenities = (keyword: string) => {
+    const { data, isFetching } = useQuery({
+        queryKey: [QUERY_KEY.SEARCH_AMENITIES, keyword],
+        queryFn: async ({ queryKey }) => {
+            const [_key, keyword] = queryKey;
+            const res = await searchService.searchAmenities(keyword);
+            return res.data.content;
+        },
+        refetchOnWindowFocus: false,
+        enabled: !!keyword
+    });
+
+    return {
+        amenities: data,
+        isFetching
     }
 }
 

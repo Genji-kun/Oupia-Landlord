@@ -1,15 +1,21 @@
 import FilterInput from '@/components/common/FilterInput';
-import Spinner from '@/components/common/Spinner';
 import AssetTable from '@/components/pages/assets/AssetList';
 import { Button } from '@/components/ui/button';
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Skeleton } from '@/components/ui/skeleton';
 import { useSearchAssets } from '@/hooks/query';
-import { Search } from 'lucide-react';
-import React from 'react'
+import { ChevronFirstIcon, ChevronLastIcon, ChevronLeftIcon, ChevronRightIcon, Search } from 'lucide-react';
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 
 const AssetsPage: React.FC = () => {
 
-    const { assets, isFetchingAssets } = useSearchAssets();
+
+    const [page, setPage] = useState(1);
+    const [size, setSize] = useState(4);
+
+    const { assets, isFetchingAssets, totalPage, totalElements } = useSearchAssets(size, page);
+
 
     return (
         <div className="flex flex-col gap-4">
@@ -31,9 +37,48 @@ const AssetsPage: React.FC = () => {
 
             </div>
             {
-                isFetchingAssets ? <Spinner marginY={"10rem"} /> : <AssetTable data={assets} />
+                isFetchingAssets ? <Skeleton className="bg-border w-full aspect-[4/1]" /> : <AssetTable data={assets} />
             }
-        </div>
+            <div className="flex justify-between gap-2 items-center">
+                {totalElements > 0}
+                <div className='flex items-center justify-center gap-2'>
+                    <Button disabled={page <= 1} onClick={() => setPage(1)} variant={"outline"} className='h-fit w-fit p-2'>
+                        <ChevronFirstIcon className='w-4 h-4' />
+                    </Button>
+                    <Button disabled={page <= 1} onClick={() => setPage((prev) => prev - 1)} variant={"outline"} className='h-fit w-fit p-2'>
+                        <ChevronLeftIcon className='w-4 h-4' />
+                    </Button>
+                    <Button variant={"ghost"} className='h-fit w-fit p-2'>
+                        <span className='font-bold'>{page}</span>
+                    </Button>
+                    <Button disabled={page >= totalPage} onClick={() => setPage((prev) => prev + 1)} variant={"outline"} className='h-fit w-fit p-2'>
+                        <ChevronRightIcon className=' w-4 h-4' />
+                    </Button>
+                    <Button disabled={page >= totalPage} onClick={() => setPage((prev) => prev + 1)} variant={"outline"} className='h-fit w-fit p-2'>
+                        <ChevronLastIcon className=' w-4 h-4' />
+                    </Button>
+                </div>
+                <div className='flex gap-2 items-center'>
+                    <h3 className='font-semibold text-foreground'>Hiển thị số lượng hàng</h3>
+                    <Select value={size.toString()} onValueChange={(value) => setSize(Number(value))}>
+                        <SelectTrigger className="w-16">
+                            <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectGroup>
+                                <SelectLabel>Số hàng</SelectLabel>
+                                {
+                                    [2, 4, 6, 8, 10].map((item, index) => {
+                                        return <SelectItem key={index} value={item.toString()}>{item}</SelectItem>
+                                    })
+                                }
+                            </SelectGroup>
+                        </SelectContent>
+                    </Select>
+                </div>
+
+            </div>
+        </div >
     )
 }
 

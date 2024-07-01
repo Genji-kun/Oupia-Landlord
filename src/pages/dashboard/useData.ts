@@ -17,14 +17,14 @@ export type TotalStat = {
 }
 
 
-export const useData = () => {
+export const useData = (year: number) => {
     const { data: reviewStat, isFetching: reviewFetching } = useQuery({
-        queryKey: [QUERY_KEY.GET_REVIEW_STAT],
-        queryFn: async ({ queryKey }) : Promise<MonthlyReviewStatisticsResponse[]> => {
-            const [_key] = queryKey;
+        queryKey: [QUERY_KEY.GET_REVIEW_STAT, year],
+        queryFn: async ({ queryKey }): Promise<MonthlyReviewStatisticsResponse[]> => {
+            const [_key, year] = queryKey;
             const res = await dashboardService.reviews({
-                start: '2023-01-01T00:00:00',
-                end: '2025-12-31T23:59:59',
+                start: `${year}-01-01T00:00:00`,
+                end: `${year}-12-31T23:59:59`,
             });
             return res.data;
         },
@@ -33,7 +33,7 @@ export const useData = () => {
 
     const { data: totalStat, isFetching: totalFetching } = useQuery({
         queryKey: [QUERY_KEY.GET_TOTAL_STAT],
-        queryFn: async ({ queryKey }) : Promise<TotalStat> => {
+        queryFn: async ({ queryKey }): Promise<TotalStat> => {
             const [_key] = queryKey;
             const res = await dashboardService.stats();
             return res.data;
