@@ -22,3 +22,7 @@ export const DASHBOARD_ENDPOINTS = {
     TOTAL: `store/landlord/stat/`,
     REVIEWS: `store/landlord/stat/reviews/monthly/`
 }
+
+export const SEARCH_ENDPOINTS = {
+    AMENITY: `search/amenities/`
+}

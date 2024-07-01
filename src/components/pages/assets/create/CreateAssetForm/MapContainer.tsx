@@ -36,7 +36,7 @@ const MapContainer = ({ longitude, latitude }: { longitude: number, latitude: nu
                 goongApiAccessToken={import.meta.env.VITE_PUBLIC_GOONG_MAPS_MAPTILES_KEY}
                 onViewportChange={(nextViewport: any) => setViewport(nextViewport)}>
                 {longitude && latitude &&
-                    <Marker draggable latitude={latitude} longitude={longitude} offsetLeft={-20} offsetTop={-10}>
+                    <Marker latitude={latitude} longitude={longitude} offsetLeft={-20} offsetTop={-10}>
                         <PiMapPinFill className="w-5 h-5 fill-primary" />
                     </Marker>
                 }

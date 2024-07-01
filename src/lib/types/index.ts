@@ -32,8 +32,12 @@ export type TCreateAssetForm = {
     maxPeople: string,
     locationLong: number,
     locationLat: number,
-    amenities: string[],
+    amenities: Amenity[],
     images: File[]
+}
+
+export type Amenity = {
+    amenityName: string
 }
 
 export type TCreateCertificationForm = {
