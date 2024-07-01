@@ -82,7 +82,7 @@ const UserInput = ({ form, disabled }: { form: UseFormReturn<TCreateCertificatio
     return (
 
         <div className="relative space-y-2 w-full" ref={inputRef}>
-            <Label>Người nhận chứng chỉ</Label>
+            <Label>Người được gửi chứng nhận</Label>
             {
                 selectedUser ?
                     <div className="flex items-center justify-between w-full px-4 py-2 rounded bg-background shadow-md">
@@ -108,7 +108,7 @@ const UserInput = ({ form, disabled }: { form: UseFormReturn<TCreateCertificatio
                         </div>
                         {
                             showResults &&
-                            <ScrollArea className="absolute z-10 bottom-2 max-h-72 w-full rounded border border-t-0 rounded-t-none py-2">
+                            <ScrollArea className="absolute z-10 bottom-2 h-72 w-full rounded border border-t-0 rounded-t-none py-2">
                                 <div className="flex flex-col px-2">
                                     {users && users.map((user: IUser) => {
                                         return (
